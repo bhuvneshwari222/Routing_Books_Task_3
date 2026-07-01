@@ -144,7 +144,7 @@ export class AuthorsService {
   addAuthor(newAuthor: IAuthor): Observable<IAuthorResp<IAuthor>> {
     this.authorsArr.unshift(newAuthor);
     return of({
-      msg: `The new author ${newAuthor} is added successfully`,
+      msg: `The new author ${newAuthor.authorName} is added successfully`,
       data: newAuthor
     })
   }

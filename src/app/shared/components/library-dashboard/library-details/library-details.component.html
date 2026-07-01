@@ -1,0 +1,17 @@
+<mat-card class="p-0 mt-md-0 mt-4">
+    <mat-card-content>
+        <div>
+            <figure class="library-info" [ngStyle]="{
+        'background-image': 'linear-gradient(0deg, #000 2%, transparent), url(' + libraryObj.libraryImage + ')'}">
+
+                <figcaption class="p-4 date-time-info">
+                    <p class="m-0">Total Books: {{libraryObj.totalBooks}}</p>
+                    <p class="m-0">Established Year: {{libraryObj.establishedYear}}</p>
+                    <p class="m-0">Library Type: {{libraryObj.libraryType}}</p>
+                </figcaption>
+
+            </figure>
+            <p class="p-4 m-0">{{libraryObj.description}}</p>
+        </div>
+    </mat-card-content>
+</mat-card>

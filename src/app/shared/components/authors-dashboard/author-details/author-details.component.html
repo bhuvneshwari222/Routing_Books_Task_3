@@ -1,0 +1,63 @@
+<div class="row mt-md-0 mt-4">
+    <div class="col-md-4">
+        <mat-card class="p-0">
+            <mat-card-content>
+                <img class="profileImg" [src]="authorObj.profileImage" [alt]="authorObj.authorName"
+                    [title]="authorObj.authorName">
+                <div class="p-3">
+                    <h3 class="m-0 font-weight-bold">{{authorObj.authorName}}</h3>
+                    <small>({{authorObj.authorRole}})</small>
+                    <p>{{authorObj.biography}}</p>
+                <mat-card-actions class="p-0 m-0 d-flex justify-content-between">
+                    <button routerLink="edit" mat-raised-button color="primary">Edit</button>
+                    <button (click)="onRemove()" mat-raised-button color="warn">Remove</button>
+                </mat-card-actions>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-8 mt-md-0 mt-4">
+        <mat-card>
+            <mat-card-content>
+                <h3 class="font-weight-bold">Basic Information</h3>
+                <p class="m-0">AuthorId: {{authorObj.authorId}}</p>
+                <p class="m-0">Experience: {{authorObj.experienceYears}}</p>
+                <p class="m-0">Status: <small class="badge p-1" [ngClass]="{
+                    'badge-success': authorObj.isActive,
+                    'badge-danger': !authorObj.isActive
+                }">{{authorObj.isActive ? 'Active': 'InActive'}}</small></p>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="mt-4">
+            <h3 class="font-weight-bold">Skills</h3>
+            <mat-card-content>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip *ngFor="let skill of authorObj.skills">{{skill}}</mat-chip>
+                </mat-chip-list>
+
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="mt-4">
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="font-weight-bold">Current Address</h3>
+                        <p>{{authorObj.address.current.country}}</p>
+                        <p>{{authorObj.address.current.state}}</p>
+                        <p>{{authorObj.address.current.city}}</p>
+                        <p>{{authorObj.address.current.zipcode}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="font-weight-bold">Permanent Address</h3>
+                        <p>{{authorObj.address.permanent.country}}</p>
+                        <p>{{authorObj.address.permanent.state}}</p>
+                        <p>{{authorObj.address.permanent.city}}</p>
+                        <p>{{authorObj.address.permanent.zipcode}}</p>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

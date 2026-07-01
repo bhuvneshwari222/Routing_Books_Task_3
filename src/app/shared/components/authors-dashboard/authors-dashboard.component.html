@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-12 mb-4 text-right">
+        <button routerLink="addAuthor" mat-raised-button color="primary">Add Author</button>
+    </div>
+    <div class="col-md-4" *ngIf="authorsArr.length > 0; else noAuthor">
+        <ul class="list-group">
+            <li [routerLink]="author.authorId" routerLinkActive="active" [queryParams]="{
+                 authorRole : author.authorRole}" class=" list-group-item" *ngFor="let author of authorsArr">
+                {{author.authorName}}
+                <small class="p-1 badge" [ngClass]="{
+                    'badge-success': author.isActive,
+                    'badge-danger': !author.isActive
+                }">{{author.isActive ? 'Active' : 'InActive'}}</small>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+    <ng-template #noAuthor>
+        <p class="alert alert-info">No author is added yet!!!</p>
+    </ng-template>
+</div>

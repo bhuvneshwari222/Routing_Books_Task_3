@@ -1,0 +1,28 @@
+<div class="row" *ngIf="booksArr.length > 0; else noBooks">
+    <div class="col-md-12 mb-4 text-right">
+        <button routerLink="addBook" mat-raised-button color="primary">Add Book</button>
+    </div>
+
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li [queryParams]="{
+                bookStatus: book.bookStatus
+            }" routerLinkActive="active" [routerLink]="book.bookId" class="list-group-item"
+                *ngFor="let book of booksArr">
+                {{book.bookName}}
+                <small class="badge" [ngClass]="{
+                    'badge-success': book.rating > 4,
+                    'badge-warning': book.rating >= 2.5  && book.rating <= 4,
+                    'badge-danger': book.rating < 2.5
+                }">{{book.rating}}</small>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<ng-template #noBooks>
+    <p class="alert alert-info">Books are not available</p>
+</ng-template>

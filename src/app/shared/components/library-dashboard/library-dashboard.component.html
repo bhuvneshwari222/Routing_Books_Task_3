@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-md-4">
+        <app-libarary-cards
+       *ngFor="let library of libraryArr"
+       [libraryObj]="library">
+        </app-libarary-cards>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>

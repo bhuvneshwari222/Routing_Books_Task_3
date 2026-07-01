@@ -1,0 +1,76 @@
+<mat-card>
+    <mat-card-title>{{isInEditMode ? 'Update Book' : 'Add Book'}}</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="bookName">BookName</label>
+                <input formControlName="bookName" id="bookName" type="text" class="form-control">
+                <strong *ngIf="f['bookName'].touched && f['bookName'].hasError('required')" class="text-danger">BookName
+                    is a required field.</strong>
+            </div>
+
+            <div class="form-group">
+                <label for="coverImage">CoverImage</label>
+                <input formControlName="coverImage" id="coverImage" type="text" class="form-control">
+                <strong *ngIf="f['coverImage'].touched && f['coverImage'].hasError('required')"
+                    class="text-danger">CoverImage is a required field.</strong>
+            </div>
+
+            <div class="form-group">
+                <label for="bookStatus">BookStatus</label>
+                <input formControlName="bookStatus" id="bookStatus" type="text" class="form-control">
+                <strong *ngIf="f['bookStatus'].touched && f['bookStatus'].hasError('required')"
+                    class="text-danger">BookStatus is a required field.</strong>
+            </div>
+
+            <div class="form-group">
+                <label for="isBestSeller">isBestSeller</label>
+                <select formControlName="isBestSeller" id="isBestSeller" class="form-control">
+                    <option [ngValue]="true">Yes</option>
+                    <option [ngValue]="false">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input formControlName="rating" id="rating" type="number" class="form-control">
+                <strong *ngIf="f['rating'].touched && f['rating'].hasError('required')" class="text-danger">
+                    Rating is a required field.
+                </strong>
+                <strong *ngIf="f['rating'].dirty && f['rating'].hasError('max')" class="text-danger">
+                    Max Rating is 5
+                </strong>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input formControlName="genre" id="genre" type="text" class="form-control">
+                <strong *ngIf="f['genre'].touched && f['genre'].hasError('required')" class="text-danger">
+                    Genre is a required field.
+                </strong>
+            </div>
+
+            <div class="form-group">
+                <label for="publishYear">publishYear</label>
+                <input formControlName="publishYear" id="publishYear" type="text" class="form-control">
+                <strong *ngIf="f['publishYear'].touched && f['publishYear'].hasError('required')" class="text-danger">
+                    PublishYear is a required field.
+                </strong>
+                <strong *ngIf="f['publishYear'].dirty && f['publishYear'].hasError('pattern')" class="text-danger">
+                    Plz Enter Valid PublishYear.
+                </strong>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea rows="4" formControlName="description" id="description" class="form-control"></textarea>
+                <strong *ngIf="f['description'].touched && f['description'].hasError('required')" class="text-danger">
+                    Description is a required field.
+                </strong>
+            </div>
+
+            <button *ngIf="!isInEditMode" mat-raised-button color="accent">Add Book</button>
+            <button *ngIf="isInEditMode" (click)="onUpdateBook()" type="button" mat-raised-button color="accent">Update Book</button>
+        </form>
+    </mat-card-content>
+</mat-card>

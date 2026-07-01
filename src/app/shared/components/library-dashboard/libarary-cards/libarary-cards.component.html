@@ -1,0 +1,11 @@
+<mat-card class="mb-4 library-card" 
+[routerLink]="libraryObj.libraryId"
+ routerLinkActive="active">
+    <mat-card-content>
+        <h1>{{libraryObj.libraryName}}</h1>
+        <div class="bg-light p-3">
+            <p class="m-0">Library Type: {{libraryObj.libraryType}}</p>
+            <p class="m-0">Established Year: {{libraryObj.establishedYear}}</p>
+        </div>
+    </mat-card-content>
+</mat-card>

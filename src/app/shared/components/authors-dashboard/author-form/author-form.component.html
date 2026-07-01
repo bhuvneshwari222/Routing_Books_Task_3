@@ -1,0 +1,68 @@
+<mat-card>
+    <mat-card-title>{{isInEditMode ? 'Update Author' : 'Add Author'}}</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="authorForm">
+            <div class="form-group">
+                <label for="authorName">Author Name</label>
+                <input formControlName="authorName" id="authorName" type="text" class="form-control">
+                <strong *ngIf="f['authorName'].touched && f['authorName'].hasError('required')"
+                    class="text-danger">Author Name is a required field.</strong>
+            </div>
+
+            <div class="form-group">
+                <label for="authorRole">Author Role</label>
+                <input formControlName="authorRole" id="authorRole" type="text" class="form-control">
+                <strong *ngIf="f['authorRole'].touched && f['authorRole'].hasError('required')"
+                    class="text-danger">Author Role is a required field.</strong>
+            </div>
+
+            <div class="form-group">
+                <label for="profileImage">Profile Image</label>
+                <input formControlName="profileImage" id="profileImage" type="text" class="form-control">
+                <strong *ngIf="f['profileImage'].touched && f['profileImage'].hasError('required')"
+                    class="text-danger">Profile Image is a required field.</strong>
+            </div>
+
+            <div class="form-group">
+                <label for="experienceYears">Experience in Years</label>
+                <input formControlName="experienceYears" id="experienceYears" type="text" class="form-control">
+                <strong *ngIf="f['experienceYears'].touched && f['experienceYears'].hasError('required')"
+                    class="text-danger">Experience is a required field.</strong>
+            </div>
+
+            <div class="form-group">
+                <label for="isActive">Is Active</label>
+                <select formControlName="isActive" id="isActive" type="text" class="form-control">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="biography">Biography</label>
+                <textarea formControlName="biography" id="biography" rows="4" class="form-control"></textarea>
+                <strong *ngIf="f['biography'].touched && f['biography'].hasError('required')" class="text-danger">Author
+                    Name is a required field.</strong>
+            </div>
+
+            <div formArrayName="skills">
+                <h3 class="font-weight-bold m-0">Skills</h3>
+                <div class="row" *ngFor="let skill of skillsArr.controls; let i = index">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <input [formControlName]="i" [id]="i" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button *ngIf="i > 0" (click)="onRemoveControl(i)" class="btn btn-outline-danger btn-sm">Remove</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" (click)="addSkillControl()" mat-raised-button color="primary">Add Skill</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

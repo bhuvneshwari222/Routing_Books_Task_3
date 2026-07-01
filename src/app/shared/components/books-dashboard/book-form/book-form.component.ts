@@ -87,8 +87,11 @@ export class BookFormComponent implements OnInit {
       .subscribe({
         next: resp => {
           this._snackBar.openSnackBar(resp.msg);
-          this._router.navigate(['books']);
-          this._bookService.setFirstBookSub$.next(true)
+          this._router.navigate(['books', this.bookId], {
+            queryParams: {
+              bookStatus: updatedBook.bookStatus
+            }
+          });
         },
         error: err => {
           this._snackBar.openSnackBar(err.msg);

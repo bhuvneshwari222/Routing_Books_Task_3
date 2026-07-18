@@ -15,10 +15,14 @@ export class LibraryDetailsComponent implements OnInit {
   constructor(
     private _libraryService: LibrariesService,
     private _routes: ActivatedRoute
-  ) { }
+  ) {
+    this._routes.data.subscribe(data =>{
+      this.libraryObj = data['library'];
+    })
+   }
 
   ngOnInit(): void {
-    this.getLibraryObj()
+    // this.getLibraryObj()
   }
 
   getLibraryObj() {

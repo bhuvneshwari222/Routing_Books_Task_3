@@ -21,9 +21,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { GetConfirmComponent } from './shared/components/get-confirm/get-confirm.component';
 import { LibararyCardsComponent } from './shared/components/library-dashboard/libarary-cards/libarary-cards.component';
+import { AuthComponent } from './shared/components/auth/auth.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { LibararyCardsComponent } from './shared/components/library-dashboard/li
     NavbarComponent,
     PageNotFoundComponent,
     GetConfirmComponent,
-    LibararyCardsComponent
+    LibararyCardsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,9 @@ import { LibararyCardsComponent } from './shared/components/library-dashboard/li
     MatDividerModule,
     MatChipsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

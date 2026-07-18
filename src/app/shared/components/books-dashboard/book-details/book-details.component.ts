@@ -21,10 +21,14 @@ export class BookDetailsComponent implements OnInit {
     private _snackBar: SnackbarService,
     private _router: Router,
     private _matDialog: MatDialog
-  ) { }
+  ) {
+    this._routes.data.subscribe(data => {
+      this.bookObj = data['book'];
+    })
+  }
 
   ngOnInit(): void {
-    this.getBookObj();
+    // this.getBookObj();
   }
 
   getBookObj() {

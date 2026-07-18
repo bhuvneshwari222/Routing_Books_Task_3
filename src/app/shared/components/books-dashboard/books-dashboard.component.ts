@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ibook } from '../../models/books';
 import { BooksService } from '../../services/books.service';
 import { SnackbarService } from '../../services/snackbar.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-books-dashboard',
@@ -15,11 +15,15 @@ export class BooksDashboardComponent implements OnInit {
   constructor(
     private _booksService: BooksService,
     private _snackbar: SnackbarService,
-    private _router: Router
-  ) { }
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) {
+    this.booksArr = this._route.snapshot.data['books'];
+    this.setFirstBook();
+  }
 
   ngOnInit(): void {
-    this.getBooksArr();
+    // this.getBooksArr();
     this._booksService.setFirstBookSub$
       .subscribe(resp => {
         if (resp) {

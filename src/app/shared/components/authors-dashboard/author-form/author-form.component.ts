@@ -167,5 +167,13 @@ export class AuthorFormComponent implements OnInit {
       })
   }
 
+  canDeactivate(): boolean{
+    if(this.authorForm.dirty && this.isInEditMode){
+      let getConfirmation = confirm(`Are you sure, you want to descard the changes?`);
+      return getConfirmation;
+    }else{
+      return true;
+    }
+  }
 
 }

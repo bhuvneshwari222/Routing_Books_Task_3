@@ -1,0 +1,34 @@
+.spinner{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(255,255,255,.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-auth{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(90deg, #c74cc7 0%, #460c46 100%);
+
+    .mat-card{
+        width: 400px;
+        max-width: 90%;
+        padding: 24px;
+    }
+}
+form{
+    .ng-invalid.ng-touched,
+    .ng-invalid.ng-dirty{
+        border-color: red;
+    }
+}

@@ -1,0 +1,64 @@
+<main class="main-auth">
+    <ng-container *ngIf="!isAllreadyLoggedIn">
+        <mat-card>
+            <mat-card-title>Sign Up</mat-card-title>
+            <mat-card-content>
+                <form class="mb-2" [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input formControlName="email" id="email" type="text" class="form-control">
+                        <strong class="text-danger" *ngIf="signUpControls['email'].touched && signUpControls['email'].hasError('required')">Email is a required field.</strong>
+                        <strong class="text-danger" *ngIf="signUpControls['email'].dirty && signUpControls['email'].hasError('pattern')">Invalid Email Id.</strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password*</label>
+                        <input formControlName="password" id="password" type="text" class="form-control">
+                        <strong class="text-danger" *ngIf="signUpControls['password'].touched && signUpControls['password'].hasError('required')">Password is a required field.</strong>
+                        <strong class="text-danger" *ngIf="signUpControls['password'].dirty && signUpControls['password'].hasError('pattern')">Password must be at least 8 characters long and include one uppercase
+                            letter, one lowercase letter, one number, and one special character.</strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userRole">UserRole*</label>
+                        <select formControlName="userRole" id="userRole" class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="superAdmin">Super Admin</option>
+                            <option value="buyer">Buyer</option>
+                        </select>
+                    </div>
+
+                    <button mat-raised-button color="primary" class="w-100">Sign Up</button>
+                </form>
+                <a href="javascript:;" (click)="isAllreadyLoggedIn = true">Already have account</a>
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+    
+    <ng-container *ngIf="isAllreadyLoggedIn">
+        <mat-card>
+            <mat-card-title>Log In</mat-card-title>
+            <mat-card-content>
+                <form class="mb-3" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input formControlName="email" id="email" type="text" class="form-control">
+                        <strong class="text-danger" *ngIf="loginControls['email'].touched && loginControls['email'].hasError('required')">Email is a required field.</strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password*</label>
+                        <input formControlName="password" id="password" type="text" class="form-control">
+                        <strong class="text-danger" *ngIf="loginControls['password'].touched && loginControls['password'].hasError('required')">Password is a required field.</strong>
+                    </div>
+
+                    <button mat-raised-button color="primary" class="w-100">Log In</button>
+                </form>
+                <a href="javascript:;" (click)="isAllreadyLoggedIn = false">Does not have account</a>
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+</main>
+<div class="spinner" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>

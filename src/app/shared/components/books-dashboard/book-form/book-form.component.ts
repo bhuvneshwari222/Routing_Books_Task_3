@@ -99,4 +99,13 @@ export class BookFormComponent implements OnInit {
       })
   }
 
+  canDeactivate(): boolean {
+    if (this.bookForm.dirty && this.isInEditMode) {
+      let getConfirmation = confirm(`Are you sure, you want to descard the changes?`);
+      return getConfirmation;
+    } else {
+      return true;
+    }
+  }
+
 }

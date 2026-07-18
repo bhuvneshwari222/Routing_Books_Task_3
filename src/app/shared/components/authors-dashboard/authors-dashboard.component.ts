@@ -15,11 +15,15 @@ export class AuthorsDashboardComponent implements OnInit {
   constructor(
     private _authorsService: AuthorsService,
     private _snackBar: SnackbarService,
-    private _router: Router
-  ) { }
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) { 
+    this.authorsArr = this._route.snapshot.data['authors'];
+    this.setFirstAuthorSelected();
+  }
 
   ngOnInit(): void {
-    this.getAuthorsArr();
+    // this.getAuthorsArr();
     this._authorsService.setFirstAuthorSub$.subscribe(resp => {
       if (resp) {
         this.setFirstAuthorSelected();

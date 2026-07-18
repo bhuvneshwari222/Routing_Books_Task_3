@@ -10,20 +10,40 @@ import { BookDetailsComponent } from "./shared/components/books-dashboard/book-d
 import { BookFormComponent } from "./shared/components/books-dashboard/book-form/book-form.component";
 import { LibraryDashboardComponent } from "./shared/components/library-dashboard/library-dashboard.component";
 import { LibraryDetailsComponent } from "./shared/components/library-dashboard/library-details/library-details.component";
+import { AuthComponent } from "./shared/components/auth/auth.component";
+import { AuthorsResolver } from "./shared/services/authors.resolver";
+import { BooksResolver } from "./shared/services/books.resolver";
+import { LibraryResolver } from "./shared/services/library.resolver";
+import { AuthGuard } from "./shared/services/auth.guard";
+import { UserRoleGuard } from "./shared/services/userRole.guard";
+import { CanDeactivateGuard } from "./shared/services/canDeactivate.guard";
 
 
 const routes = [
     {
         path: '',
-        component: HomeDashboardComponent
+        component: AuthComponent
     },
     {
         path: 'home',
-        component: HomeDashboardComponent
+        component: HomeDashboardComponent,
+        canActivate: [AuthGuard, UserRoleGuard],
+        title: 'Home',
+        data: {
+            userRoles: ['admin', 'superAdmin', 'buyer']
+        }
     },
     {
         path: 'authors',
         component: AuthorsDashboardComponent,
+        canActivate: [AuthGuard, UserRoleGuard],
+        title: 'Authors',
+        data: {
+            userRoles: ['admin', 'superAdmin']
+        },
+        resolve: {
+            authors: AuthorsResolver
+        },
         children: [
             {
                 path: 'addAuthor',
@@ -31,17 +51,29 @@ const routes = [
             },
             {
                 path: ':authorID',
-                component: AuthorDetailsComponent
+                component: AuthorDetailsComponent,
+                resolve: {
+                    author: AuthorsResolver
+                },
             },
             {
                 path: ':authorID/edit',
-                component: AuthorFormComponent
+                component: AuthorFormComponent,
+                canDeactivate: [CanDeactivateGuard]
             }
         ]
     },
     {
         path: 'books',
         component: BooksDashboardComponent,
+        canActivate: [AuthGuard, UserRoleGuard],
+        title: 'Books',
+        data: {
+            userRoles: ['admin', 'superAdmin', 'buyer']
+        },
+        resolve: {
+            books: BooksResolver
+        },
         children: [
             {
                 path: 'addBook',
@@ -49,21 +81,36 @@ const routes = [
             },
             {
                 path: ':bookID',
-                component: BookDetailsComponent
+                component: BookDetailsComponent,
+                resolve: {
+                    book: BooksResolver
+                }
             },
             {
                 path: ':bookID/edit',
-                component: BookFormComponent
+                component: BookFormComponent,
+                canDeactivate: [CanDeactivateGuard]
             }
         ]
     },
     {
         path: 'libraries',
         component: LibraryDashboardComponent,
+        canActivate: [AuthGuard, UserRoleGuard],
+        title: 'Libraries',
+        data: {
+            userRoles: ['superAdmin']
+        },
+        resolve: {
+            libraries: LibraryResolver
+        },
         children: [
             {
                 path: ':libraryID',
-                component: LibraryDetailsComponent
+                component: LibraryDetailsComponent,
+                resolve: {
+                    library: LibraryResolver
+                }
             }
         ]
     },

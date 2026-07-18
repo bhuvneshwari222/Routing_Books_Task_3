@@ -21,10 +21,15 @@ export class AuthorDetailsComponent implements OnInit {
     private _routes: ActivatedRoute,
     private _matDialog: MatDialog,
     private _router: Router
-  ) { }
+  ) {
+    this._routes.data
+      .subscribe(data => {
+        this.authorObj = data['author']
+      })
+  }
 
   ngOnInit(): void {
-    this.getAuthorObj()
+    // this.getAuthorObj();
   }
 
   getAuthorObj() {

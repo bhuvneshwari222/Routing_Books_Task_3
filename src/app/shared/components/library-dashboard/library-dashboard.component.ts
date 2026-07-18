@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ILibrary } from '../../models/library';
 import { LibrariesService } from '../../services/libraries.service';
 import { SnackbarService } from '../../services/snackbar.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-library-dashboard',
@@ -15,11 +15,15 @@ export class LibraryDashboardComponent implements OnInit {
   constructor(
     private _libraryServ: LibrariesService,
     private _snackBar: SnackbarService,
-    private _router: Router
-  ) { }
+    private _router: Router,
+    private _routes: ActivatedRoute
+  ) { 
+    this.libraryArr = this._routes.snapshot.data['libraries'];
+    this._router.navigate(['libraries',this.libraryArr[0].libraryId]);
+  }
 
   ngOnInit(): void {
-    this.getLibraryArr()
+    // this.getLibraryArr()
   }
 
   getLibraryArr() {

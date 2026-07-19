@@ -82,6 +82,7 @@ export class AuthComponent implements OnInit {
       this._authService.login(loginDetails)
         .subscribe({
           next: resp => {
+            this._authService.isLoggedInSub$.next(true);
             this.isLoading = false;
             this._snackBar.openSnackBar(resp.message);
             this._authService.saveToken(resp.token);
